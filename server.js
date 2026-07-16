@@ -8,6 +8,7 @@ const connectDB = require("./database/connectDB");
 const logRequest = require("./middleware/logger");
 const errorHandler = require("./middleware/errorhandler");
 const articleRoutes = require("./routes/article.router");
+const userRoutes = require("./routes/user.route");
 
 
 app.use(logRequest);
@@ -15,7 +16,7 @@ app.use(errorHandler);
 app.use(express.json());
 app.use(cors("*"));
 app.use(articleRoutes);
-
+app.use(userRoutes);
 
 
 connectDB();
