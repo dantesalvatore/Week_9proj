@@ -1,28 +1,13 @@
 require("dotenv").config();
 
-const express = require("express");
-const app = express();
-const port = 3004;
-const cors = require("cors");
-const connectDB = require("./database/connectDB");
-const logRequest = require("./middleware/logger");
-const errorHandler = require("./middleware/errorhandler");
-const articleRoutes = require("./routes/article.router");
-const userRoutes = require("./routes/user.route");
+const app = require("./src/app");
+const connectDB = require("./src/config/connectDB.js");
 
-
-app.use(logRequest);
-app.use(errorHandler);
-app.use(express.json());
-app.use(cors("*"));
-app.use(articleRoutes);
-app.use(userRoutes);
-
-
-connectDB();
+const port = process.env.PORT || 3004;
 
 
 
-app.listen(port, () => {
+app.listen(port, async () => {
+  await connectDB();
   console.log(`Server is running on port ${port}`);
 });

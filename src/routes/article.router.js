@@ -3,14 +3,17 @@ const router = express.Router();
 const requireAuth = require("../middleware/requireAuth");
 const { postArticle, getAllArticles, getArticleById, updateArticleById, deleteArticleById } = require("../controllers/article.controller");
 
-router.post("/articles", requireAuth, postArticle);
 
-router.get("/articles", requireAuth, getAllArticles);
+router.use(requireAuth);
 
-router.get("/articles/:id", requireAuth, getArticleById);
+router.post("/articles", postArticle);
 
-router.put("/articles/:id", requireAuth, updateArticleById);
+router.get("/articles", getAllArticles);
 
-router.delete("/articles/:id", requireAuth, deleteArticleById);
+router.get("/articles/:id", getArticleById);
+
+router.put("/articles/:id", updateArticleById);
+
+router.delete("/articles/:id", deleteArticleById);
 
 module.exports = router;
