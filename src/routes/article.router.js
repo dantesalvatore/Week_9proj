@@ -3,6 +3,15 @@ const router = express.Router();
 const requireAuth = require("../middleware/requireAuth");
 const { postArticle, getAllArticles, getArticleById, updateArticleById, deleteArticleById } = require("../controllers/article.controller");
 
+const dns = require("dns");
+
+dns.lookup("www.google.com", (err) => {
+  if (err) {
+    console.error("Error occured  while resolving DNS:", err);
+  } else {
+    console.log("DNS resolved successfully");
+  }  
+});
 
 router.use(requireAuth);
 
